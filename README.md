@@ -1,7 +1,7 @@
 # Siscomoceb
 
-![GitHub repo size](https://img.shields.io/github/repo-size/artsmoura/socialMedia)
-![GitHub language count](https://img.shields.io/github/languages/count/artsmoura/socialMedia)
+![GitHub repo size](https://img.shields.io/github/repo-size/artsmoura/siscomoceb)
+![GitHub language count](https://img.shields.io/github/languages/count/artsmoura/siscomoceb)
 
 ### Sobre
 
