@@ -1,0 +1,16 @@
+.boxForm {
+    width: 400px;
+    height: 400px;
+    border: 1px solid rgba(192, 192, 192, 0.712);
+    border-radius: 7px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: white;
+    padding: 0 10px;
+}
+
+.boxForm h1 {
+    justify-self: first baseline;
+}

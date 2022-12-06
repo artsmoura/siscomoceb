@@ -1,0 +1,44 @@
+.button {
+    background-color: transparent;
+    border: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.btnBlue {
+    border-radius: 5px;
+    background-color: rgb(76, 106, 241);
+    border: 0px;
+    color: white;
+    padding: 8px;
+    margin: 5px;
+    font-weight: bold;
+}
+
+.btnBlue .button {
+    color: white;
+}
+
+/* RESOLVER ISSO AQUI */
+.btnBlue[name="btnForm"] {
+    width: 100%;
+}
+
+.btnBlue:hover {
+    background-color: rgb(39, 77, 247);
+    cursor: pointer
+}
+
+/* --------> BOTÂO DA NAVBAR  */
+.navbarBtn {
+    width: fit-content;
+    height: 100%;
+}
+
+.navbarBtn:hover {
+    background-color: rgb(230, 230, 230);
+    cursor: pointer;
+}

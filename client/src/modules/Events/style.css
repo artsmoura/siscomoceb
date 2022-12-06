@@ -1,0 +1,14 @@
+.eventBox {
+    margin-top: 49px;
+}
+
+.eventBox .eventCard {
+    display: flex;
+    align-items: center;
+}
+
+.eventBox>h2 {
+    margin-left: 16px;
+    margin-bottom: 0px;
+    color: rgba(130, 130, 130, 1);
+}
