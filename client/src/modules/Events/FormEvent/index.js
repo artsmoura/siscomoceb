@@ -1,15 +1,21 @@
 import React, { useState } from "react";
 import Button from "../../../components/Button";
 import Input from "../../../components/Input";
+import FileBase from 'react-file-base64';
 import './style.css';
+import { useDispatch } from 'react-redux';
+import { createEvent } from "../redux/eventsAction";
 
 const FormEvent = () => {
     const [eventInput, setEventInput] = useState({
         nameEvent: '',
         descriptionEvent: '',
         dateEvent: '',
-        locationEvent: ''
+        locationEvent: '',
+        selectedFile: ''
     });
+
+    const dispatch = useDispatch();
 
     const handleChange = (input) => {
         setEventInput({
@@ -18,11 +24,15 @@ const FormEvent = () => {
         });
     };
 
-    // const handleSubmit = createEvent();
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(createEvent());
+    };
 
     return (
         <div className="container">
             <div className="boxForm">
+                <h2>Criar Evento</h2>
                 <form>
                     <Input
                         type="text"
@@ -43,7 +53,7 @@ const FormEvent = () => {
                         className="formInput"
                     />
                     <Input
-                        type="text"
+                        type="date"
                         name="dateEvent"
                         placeholder="Data do Evento"
                         onChange={handleChange}
@@ -60,8 +70,24 @@ const FormEvent = () => {
                         isRequired={true}
                         className="formInput"
                     />
+                    <div>
+                        <FileBase
+                            type="file"
+                            multiple={false}
+                            onDone={({ base64 }) => setEventInput({
+                                ...eventInput,
+                                selectedFile: base64
+                            })}
+                        />
+                    </div>
                 </form>
-                <Button type="submit" name="btnForm" className="btnBlue" text="Criar" />
+                <Button
+                    type="submit"
+                    name="btnForm"
+                    className="btnBlue"
+                    text="Criar"
+                    onClick={handleSubmit}
+                />
             </div>
         </div>
     );

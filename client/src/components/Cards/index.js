@@ -10,9 +10,12 @@ const Card = (props) => {
                     backgroundImage: `url(${props.image})`,
                 }}></div>
                 : null}
-            <h2>{props.title}</h2>
-            <h3>Data: {props.data}</h3>
-            <h3>Inscrição: {props.inscricaoDate}</h3>
+            <div className="cardInfo">
+                <h2>{props.title}</h2>
+                <p>Data: {props.data}</p>
+                <p>Inscrição: {props.inscricaoDate}</p>
+                <p>Local: {props.location}</p>
+            </div>
             <Button
                 name="detalhes"
                 text="Detalhes"

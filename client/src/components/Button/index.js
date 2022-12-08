@@ -11,7 +11,9 @@ const Button = (props) => {
                 required={props.isRequired && props.isRequired}
                 className="button"
             >
-                {props.text && props.text}
+                <spam>
+                    {props.text && props.text}
+                </spam>
                 {props.icon && props.icon}
             </button>
         </div>
