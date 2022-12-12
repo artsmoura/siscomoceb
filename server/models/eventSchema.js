@@ -1,12 +1,11 @@
 import mongoose from "mongoose";
 
 const eventSchema = mongoose.Schema({
-    title: String,
+    name: String,
     description: String,
     creator: String,
-    tags: [String],
     location: String,
-    dataEvent: {
+    dateEvent: {
         type: Date,
         default: new Date()
     },
@@ -14,7 +13,7 @@ const eventSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    Subscribed: [String],
+    subscribed: [String],
     createAt: {
         type: Date,
         default: new Date()
@@ -22,7 +21,14 @@ const eventSchema = mongoose.Schema({
     eventActive: {
         type: Boolean,
         default: false
-    }
+    },
+    image: String,
+    accommodation: [
+        {
+            name: String,
+            checked: Boolean
+        }
+    ]
 });
 
 const EventSchema = mongoose.model('Event', eventSchema);

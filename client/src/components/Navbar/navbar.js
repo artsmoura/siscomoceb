@@ -1,7 +1,7 @@
 import React from 'react';
 import { BiChevronDown } from 'react-icons/bi';
-import Button from '../Button';
-import './style.css';
+import Button from '../Button/button';
+import './navbar.css';
 import { useWindowDimensions } from '../../utils';
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 

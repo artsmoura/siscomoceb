@@ -1,6 +1,9 @@
+import express from 'express';
 import EventSchema from "../models/eventSchema.js";
 
-export const getEvents = async (res, req) => {
+const router = express.Router();
+
+export const getEvents = async (req, res) => {
     try {
         const events = await EventSchema.find();
         res.status(200).json(events);
@@ -23,3 +26,5 @@ export const createEvent = async (req, res) => {
         res.status(409).json({ message: error.message });
     }
 };
+
+export default router;

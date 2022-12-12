@@ -1,5 +1,5 @@
 import React from 'react';
-import './style.css';
+import './button.css';
 
 const Button = (props) => {
     return (
@@ -11,9 +11,9 @@ const Button = (props) => {
                 required={props.isRequired && props.isRequired}
                 className="button"
             >
-                <spam>
+                <span>
                     {props.text && props.text}
-                </spam>
+                </span>
                 {props.icon && props.icon}
             </button>
         </div>

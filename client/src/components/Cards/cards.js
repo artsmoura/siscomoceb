@@ -1,10 +1,10 @@
 import React from "react";
-import Button from "../Button";
-import './style.css';
+import Button from "../Button/button";
+import './cards.css';
 
 const Card = (props) => {
     return (
-        <div className="cardBox">
+        <div className="cardBox" key={props.key && props.key}>
             {props.image ?
                 <div className="cardImg" style={{
                     backgroundImage: `url(${props.image})`,

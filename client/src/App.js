@@ -1,7 +1,7 @@
 import React from "react";
-import Navbar from "./components/Navbar";
-import EventPage from "./modules/Events";
-import FormEvent from "./modules/Events/FormEvent";
+import Navbar from "./components/Navbar/navbar";
+import EventPage from "./modules/Events/events";
+import FormEvent from "./modules/Events/FormEvent/formEvent";
 import {
     Routes,
     Route
