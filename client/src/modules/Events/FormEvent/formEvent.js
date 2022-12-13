@@ -32,7 +32,7 @@ const FormEvent = () => {
                     <Input
                         type="text"
                         name="name"
-                        placeholder="Nome do Evento"
+                        label="Nome do Evento"
                         onChange={(e) => dispatch(updateContentEvent(e))}
                         value={event.name}
                         isRequired={true}
@@ -41,7 +41,7 @@ const FormEvent = () => {
                     <Input
                         type="text"
                         name="description"
-                        placeholder="Descrição do Evento"
+                        label="Descrição do Evento"
                         onChange={(e) => dispatch(updateContentEvent(e))}
                         value={event.description}
                         isRequired={true}
@@ -50,7 +50,7 @@ const FormEvent = () => {
                     <Input
                         type="date"
                         name="dateEvent"
-                        placeholder="Data do Evento"
+                        label="Data do Evento"
                         onChange={(e) => dispatch(updateContentEvent(e))}
                         value={event.dateEvent}
                         isRequired={true}
@@ -59,7 +59,7 @@ const FormEvent = () => {
                     <Input
                         type="text"
                         name="location"
-                        placeholder="Local do Evento"
+                        label="Local do Evento"
                         onChange={(e) => dispatch(updateContentEvent(e))}
                         value={event.location}
                         isRequired={true}
@@ -68,14 +68,26 @@ const FormEvent = () => {
                     {
                         event.accommodation.map((accommodation) => {
                             return (
-                                <Checkbox
-                                    text={accommodation.name}
-                                    name={accommodation.name}
-                                    value={accommodation.name}
-                                    keyIndex={accommodation.name}
-                                    checked={accommodation.checked}
-                                    onChange={(e) => dispatch(updateContentEvent(e))}
-                                />
+                                <div className="accommodationBox">
+                                    <Checkbox
+                                        text={accommodation.name}
+                                        name={accommodation.name}
+                                        value={accommodation.name}
+                                        keyIndex={accommodation.name}
+                                        checked={accommodation.checked}
+                                        onChange={(e) => dispatch(updateContentEvent(e))}
+                                    />
+                                    <Input
+                                        type="text"
+                                        name={`valor${accommodation.name}`}
+                                        label="Valor"
+                                        onChange={(e) => dispatch(updateContentEvent(e))}
+                                        value={event.location}
+                                        isRequired={true}
+                                        className="formInput"
+                                        disabled={accommodation.checked === true ? false : true}
+                                    />
+                                </div>
                             );
                         })
                     }
@@ -89,13 +101,22 @@ const FormEvent = () => {
                         />
                     </div>
                 </form>
-                <Button
-                    type="submit"
-                    name="btnForm"
-                    className="btnBlue"
-                    text="Criar"
-                    onClick={handleSubmit}
-                />
+                <div className="btnBox">
+                    <Button
+                        type="submit"
+                        name="btnForm"
+                        className="btnBlue"
+                        text="Criar"
+                        onClick={handleSubmit}
+                    />
+                    <Button
+                        type="submit"
+                        name="btnForm"
+                        className="btnBlue"
+                        text="Criar"
+                        onClick={handleSubmit}
+                    />
+                </div>
             </div>
         </div>
     );

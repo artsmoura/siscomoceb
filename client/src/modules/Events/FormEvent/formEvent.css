@@ -1,6 +1,5 @@
-.boxForm {
-    width: 400px;
-    height: 400px;
+.boxForm, .boxForm-signup {
+    width: 100%;
     border: 1px solid rgba(192, 192, 192, 0.712);
     border-radius: 7px;
     display: flex;
@@ -8,10 +7,28 @@
     justify-content: center;
     flex-direction: column;
     background-color: white;
-    padding: 0 10px;
-    margin-top: 10px;
+    margin-top: 50px;
+}
+
+.boxForm form {
+    width: 50%;
 }
 
 .boxForm h1 {
     justify-self: first baseline;
+}
+
+.accommodationBox {
+    max-width: 96.5%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.btnBox {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }

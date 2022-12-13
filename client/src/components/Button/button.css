@@ -6,6 +6,7 @@
     height: 100%;
     display: flex;
     align-items: center;
+    justify-content: center;
 }
 
 .btnBlue {
@@ -25,14 +26,9 @@
     color: white;
 }
 
-/* RESOLVER ISSO AQUI */
-.btnBlue[name="btnForm"] {
-    width: 100%;
-}
-
-.btnBlue:hover {
+.btnBlue:hover,
+.btnBlue>button:hover {
     background-color: rgb(39, 77, 247);
-    cursor: pointer
 }
 
 /* --------> BOTÂO DA NAVBAR  */
