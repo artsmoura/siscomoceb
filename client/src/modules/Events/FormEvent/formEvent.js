@@ -4,7 +4,7 @@ import Input from "../../../components/Input/input";
 import FileBase from 'react-file-base64';
 import './formEvent.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { createEvent, updateContentEvent } from "../redux/eventsAction";
+import { createEvent, updateAccommodation, updateContentEvent } from "../redux/eventsAction";
 import Checkbox from "../../../components/Checkbox/checkbox";
 
 const FormEvent = () => {
@@ -79,10 +79,10 @@ const FormEvent = () => {
                                     />
                                     <Input
                                         type="text"
-                                        name={`valor${accommodation.name}`}
+                                        name={`valor ${accommodation.name}`}
                                         label="Valor"
-                                        onChange={(e) => dispatch(updateContentEvent(e))}
-                                        value={event.location}
+                                        onChange={(e) => dispatch(updateAccommodation(e))}
+                                        value={accommodation.valor}
                                         isRequired={true}
                                         className="formInput"
                                         disabled={accommodation.checked === true ? false : true}

@@ -1,4 +1,4 @@
-import { EVENTS_CREATE_SUCCESS, EVENTS_LOAD_SUCCESS, UPDATE_CONTENT_EVENT } from './eventsAction';
+import { EVENTS_CREATE_SUCCESS, EVENTS_LOAD_SUCCESS, UPDATE_ACCOMMODATION, UPDATE_CONTENT_EVENT } from './eventsAction';
 
 const eventoInicialState = {
     name: '',
@@ -7,10 +7,10 @@ const eventoInicialState = {
     location: '',
     image: '',
     accommodation: [
-        { name: 'Alojamento', checked: false },
-        { name: 'Chalé', checked: false },
-        { name: 'Chalé Casal', checked: false },
-        { name: 'Barraca', checked: false }
+        { name: 'Alojamento', checked: false, valor: '' },
+        { name: 'Chalé', checked: false, valor: '' },
+        { name: 'Chalé Casal', checked: false, valor: '' },
+        { name: 'Barraca', checked: false, valor: '' }
     ]
 };
 
@@ -57,6 +57,19 @@ export default (state = inicialState, action) => {
                     }
                 };
             }
+        case UPDATE_ACCOMMODATION:
+
+            return {
+                ...state,
+                event: {
+                    ...state.event,
+                    accommodation: [
+                        ...state.event.accommodation.map((item) => item.name === `valor ${action.payload.name}` ?
+                            { ...item, valor: action.payload.target.value } : item
+                        )
+                    ]
+                }
+            };
         default:
             return state;
     }
