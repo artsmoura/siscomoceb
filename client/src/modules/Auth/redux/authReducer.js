@@ -1,6 +1,6 @@
-import { AUTH_USER, UPDATE_CONTENT_AUTH } from "./authAction";
+import { AUTH_USER, CLEAR_AUTH_FIELDS, UPDATE_CONTENT_AUTH } from "./authAction";
 
-const authInicialState = {
+const userInicialState = {
     name: '',
     sobrenome: '',
     email: '',
@@ -11,7 +11,7 @@ const authInicialState = {
 };
 
 const inicialState = {
-    user: authInicialState,
+    user: userInicialState,
     userData: {}
 };
 
@@ -30,6 +30,16 @@ export default (state = inicialState, action) => {
             return {
                 ...state,
                 userData: action.payload?.user
+            };
+        case CLEAR_AUTH_FIELDS:
+            return {
+                ...state,
+                user: userInicialState
+            };
+        case LOGOUT:
+            localStorage.clear();
+            return {
+                ...state,
             };
         default:
             return state;

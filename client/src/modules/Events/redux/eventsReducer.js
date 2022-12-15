@@ -58,13 +58,12 @@ export default (state = inicialState, action) => {
                 };
             }
         case UPDATE_ACCOMMODATION:
-
             return {
                 ...state,
                 event: {
                     ...state.event,
                     accommodation: [
-                        ...state.event.accommodation.map((item) => item.name === `valor ${action.payload.name}` ?
+                        ...state.event.accommodation.map((item) => item.name === action.payload.target.name.replace('valor ', '') ?
                             { ...item, valor: action.payload.target.value } : item
                         )
                     ]

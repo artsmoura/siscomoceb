@@ -1,7 +1,10 @@
 import axios from 'axios';
 
-const url = 'http://localhost:5000/events';
+const API = axios.create({ baseURL: "http://localhost:5000" });
 
-export const getEvents = () => axios.get(url);
 
-export const createEvent = (event) => axios.post(url, event);
+export const getEvents = () => API.get("/events");
+export const createEvent = (event) => API.post("/eventcreate", event);
+
+export const loginUser = (formData) => API.post('/users/login', formData);
+export const registerUser = (formData) => API.post('/users/register', formData);

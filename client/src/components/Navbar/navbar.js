@@ -23,6 +23,10 @@ const Navbar = () => {
         console.log(`CLICOU no ${e.target.name}`);
     };
 
+    const openNavModal = () => {
+
+    };
+
     return (
         <div className='navbar'>
 
@@ -73,7 +77,7 @@ const Navbar = () => {
                 />
             </NavLink>
 
-            <div className='profileImg'>
+            <div className='profileImg' onClick={openNavModal}>
                 <img src="img/avatar.png" alt='perfil'></img>
             </div>
         </div>

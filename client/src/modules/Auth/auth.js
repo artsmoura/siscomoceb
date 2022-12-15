@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import Button from '../../components/Button/button';
 import Input from '../../components/Input/input';
 import './auth.css';
-import { authUser, updateContentAuth } from './redux/authAction';
+import { authUser, clearAuthFields, login, updateContentAuth, register } from './redux/authAction';
 import { GoogleLogin } from 'react-google-login';
 
 export const Auth = () => {
@@ -15,15 +15,13 @@ export const Auth = () => {
 
     const [isSignup, setIsSignup] = useState(false);
 
-    console.log(isSignup);
-
     const handleSubmit = (e) => {
         e.preventDefault();
-        // if(isSignup) {
-        //     dispatch(createUser(user))
-        // } else {
-        //     dispatch(login(user))
-        // }
+        if (isSignup) {
+            dispatch(register(user, navigate));
+        } else {
+            dispatch(login(user, navigate));
+        }
     };
 
     const googleSuccess = async (res) => {
@@ -43,6 +41,7 @@ export const Auth = () => {
 
     const handleScreenType = () => {
         setIsSignup(!isSignup);
+        dispatch(clearAuthFields());
     };
 
     return (
