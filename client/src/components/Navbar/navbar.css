@@ -11,6 +11,13 @@
     align-items: center;
 }
 
+.navbarButtons {
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
 .profileImg {
     position: absolute;
     right: 28px;

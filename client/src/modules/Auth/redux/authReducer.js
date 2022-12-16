@@ -10,37 +10,19 @@ const userInicialState = {
     passwordConfirm: ''
 };
 
-const userLocalStorage = JSON.parse(localStorage.getItem('profile'));
+// const userLocalStorage = JSON.parse(localStorage.getItem('profile'));
 
-
-
-let myMap = new Map(Object.entries(userLocalStorage.result));
-console.log(myMap);
-
+// let myMap = new Map(Object.entries(userLocalStorage));
 /* const result = userLocalStorage.result;
 console.log(Object.entries(result)); */
 
 const inicialState = {
-    /* user: userInicialState,
-    userData: userLocalStorage ? userLocalStorage.result : {} */
-
-    user: {
-        user: Object.entries(userInicialState).map((item) => item[0] ?
-            { ...item, [item[0]]: myMap.get(item[0]) } : item
-        )
-    },
-
-    /*  userLocalStorage ? Object.entries(userInicialState).map((item) => item[0] ?
-         (console.log(...item),
-         {
-             ...userInicialState,
-             [item[0]]: myMap.get(item[0])
-         }) : console.log('ta aqui?'))
-         : userInicialState, */
-
-    /* userData: userLocalStorage ? userLocalStorage.result : {} */
+    user: Object.assign(
+        {},
+        userInicialState,
+        ...Object.keys(userInicialState).map(keys => keys in mookup && { [keys]: mookup[keys] })
+    ),
 };
-
 
 export default (state = inicialState, action) => {
     switch (action.type) {

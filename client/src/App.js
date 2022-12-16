@@ -5,16 +5,18 @@ import FormEvent from "./modules/Events/FormEvent/formEvent";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import './style.css';
 import Auth from "./modules/Auth/auth";
+import { useWindowDimensions } from "./utils";
 
 const App = () => {
     const loginPage = window.location.pathname;
     const userLogin = localStorage.getItem('profile');
     const navigate = useNavigate();
+    const screenSize = useWindowDimensions();
 
     return (
         <div className="container">
             {navigate(0)}
-            {loginPage !== '/login' ? <Navbar /> : null}
+            {loginPage !== '/login' ? <Navbar screenSize={screenSize.width} /> : null}
             <div className="pageBox">
                 <Routes>
                     {userLogin && <Route path="/" element={<EventPage />} />}

@@ -32,7 +32,7 @@ const EventPage = () => {
             <h1>
                 {/* {useReducer.gender === 'masculino' ? "Bem vindo" : "Bem vinda"}
                 {useReducer.name} */}
-                Bem vinda, Julia
+                Bem vinda,
             </h1>
             <h2>Próximos Eventos</h2>
             <div className='eventCard'>
