@@ -1,4 +1,7 @@
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const Auth = async (req, res, next) => {
     try {
@@ -8,7 +11,7 @@ const Auth = async (req, res, next) => {
         let decodeData;
 
         if (token && isOurToken) {
-            decodeData = jwt.verify(token, 'AQUI TEM QUE IR A PALAVRA DO TOKEN');
+            decodeData = jwt.verify(token, process.env.JWTPRIVATEKEY);
 
             req.userId = decodeData?.id;
         } else {

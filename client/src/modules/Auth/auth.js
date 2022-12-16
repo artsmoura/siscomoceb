@@ -108,7 +108,7 @@ export const Auth = () => {
                         className="formInput"
                     />
                     <Input
-                        type="text"
+                        type="password"
                         name="password"
                         label="Senha"
                         onChange={(e) => dispatch(updateContentAuth(e))}
@@ -119,7 +119,7 @@ export const Auth = () => {
                     {isSignup && (
                         <>
                             <Input
-                                type="text"
+                                type="password"
                                 name="passwordConfirm"
                                 label="Confirmar Senha"
                                 onChange={(e) => dispatch(updateContentAuth(e))}

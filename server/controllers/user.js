@@ -1,14 +1,16 @@
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
+import { User, validate } from '../models/userSchema.js';
 
-import userSchema from '../models/userSchema.js';
+dotenv.config();
 
 export const login = async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        const existUser = await userSchema.User.findOne({ email });
+        const existUser = await User.findOne({ email });
 
         if (!existUser) return res.status(404).json({
             message: "Usuario não encontrado"
@@ -22,7 +24,7 @@ export const login = async (req, res) => {
 
         const token = jwt.sign({
             email: existUser.email, id: existUser._id
-        }, 'AQUI TEM QUE IR A PALAVRA DO TOKEN', { expiresIn: "12h" });
+        }, process.env.JWTPRIVATEKEY, { expiresIn: "12h" });
 
         res.status(200).json({
             result: existUser, token
@@ -35,12 +37,12 @@ export const login = async (req, res) => {
 
 export const register = async (req, res) => {
     try {
-        const { error } = userSchema.validate(req.body);
+        /* const { error } = validate(req.body);
         if (error) {
             return res.status(400).send;
-        }
+        } */
 
-        const user = await userSchema.User.findOne({ email: req.body.email });
+        const user = await User.findOne({ email: req.body.email });
         if (user) {
             return res.status(409).json({ message: "Email já registrado" });
         }
@@ -48,7 +50,7 @@ export const register = async (req, res) => {
         const salt = await bcrypt.genSalt(Number(process.env.SALT));
         const hashPassword = await bcrypt.hash(req.body.password, salt);
 
-        await new userSchema.User({ ...req.body, password: hashPassword }).save();
+        await User.create({ ...req.body, password: hashPassword });
         res.status(201).json({ message: "Usuario criado com sucesso" });
 
     } catch (error) {

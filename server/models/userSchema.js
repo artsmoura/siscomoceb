@@ -29,13 +29,16 @@
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
 import Joi from 'joi';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const userSchema = new mongoose.Schema({
-    firstName: {
+    name: {
         type: String,
         required: true
     },
-    lastName: {
+    sobrenome: {
         type: String,
         required: true
     },
@@ -47,7 +50,7 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    dataNascimento: {
+    dateNascimento: {
         type: Date,
         default: new Date()
     },
@@ -58,23 +61,21 @@ const userSchema = new mongoose.Schema({
 });
 
 userSchema.methods.generateAuthToken = function () {
-    const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, { expiresIn: "7d" });
+    const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, { expiresIn: "12h" });
     return token;
 };
 
-const User = mongoose.model("user", userSchema);
+export const User = mongoose.model("user", userSchema);
 
-const validate = (data) => {
+export const validate = (data) => {
     const schema = Joi.object({
         firstName: Joi.string().required().label("name"),
         lastName: Joi.string().required().label("sobrenome"),
         email: Joi.string().email().required().label("email"),
-        cpf: Joi.string().email.required().label('cpf'), //AQUI TEM QUE DEPOIS COLOCAR O PATTERN DO CPF
+        cpf: Joi.string().required().label('cpf'), //AQUI TEM QUE DEPOIS COLOCAR O PATTERN DO CPF
         password: Joi.string().pattern(new RegExp('^[a-zA-Z0-9]{3,30}$')).label("password"),
         passwordConfirm: Joi.ref('password'),
         dataNascimento: Joi.date().required().label("dateNascimento")
     });
     return schema.validate(data);
 };
-
-export default Object.freeze({ User, validate });

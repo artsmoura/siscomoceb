@@ -3,6 +3,7 @@ import * as api from '../../../api/index.js';
 export const UPDATE_CONTENT_AUTH = "UPDATE_CONTENT_AUTH";
 export const AUTH_USER = "AUTH_USER";
 export const CLEAR_AUTH_FIELDS = "CLEAR_AUTH_FIELDS";
+export const LOGOUT = "LOGOUT";
 
 export const updateContentAuth = e => async (dispatch) => {
     dispatch({
@@ -22,6 +23,10 @@ export const clearAuthFields = () => ({
     type: CLEAR_AUTH_FIELDS
 });
 
+export const logout = () => ({
+    type: LOGOUT
+});
+
 export const register = (formData, navigate) => async (dispatch) => {
     try {
         const { data } = await api.registerUser(formData);
@@ -35,7 +40,7 @@ export const register = (formData, navigate) => async (dispatch) => {
 
 export const login = (formData, navigate) => async (dispatch) => {
     try {
-        const { data } = await api.registerUser(formData);
+        const { data } = await api.loginUser(formData);
         dispatch(authUser(data));
         navigate('/');
     } catch (error) {
