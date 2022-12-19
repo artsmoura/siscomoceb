@@ -5,13 +5,14 @@ import './navbar.css';
 import { useOutsideClick } from '../../utils';
 import { NavLink } from 'react-router-dom';
 import ModalHeader from '../modalHeader/modalHeader';
+import { useSelector } from 'react-redux';
 
 const Navbar = (props) => {
 
     const [modalType, setModalType] = useState('hidden');
     const ref = useRef();
 
-    const user = useState(JSON.parse(localStorage.getItem('profile')));
+    const user = useSelector((state) => state.authState.user);
 
     // useEffect(() => {
     //     const token = user?.token;
@@ -32,7 +33,7 @@ const Navbar = (props) => {
 
     return (
         <>
-            <div className='navbar' ref={ref}>
+            <div className='navbar'>
                 {props.screenSize >= 974 ?
                     <div className='navbarButtons'>
                         <NavLink to="/">
@@ -95,7 +96,7 @@ const Navbar = (props) => {
                     <img src="img/avatar.png" alt='perfil'></img>
                 </div>
             </div>
-            <ModalHeader type={modalType} />
+            <ModalHeader ref={ref} type={modalType} user={user} />
         </>
     );
 };

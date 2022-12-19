@@ -10,17 +10,14 @@ const userInicialState = {
     passwordConfirm: ''
 };
 
-// const userLocalStorage = JSON.parse(localStorage.getItem('profile'));
-
-// let myMap = new Map(Object.entries(userLocalStorage));
-/* const result = userLocalStorage.result;
-console.log(Object.entries(result)); */
+const userLocalStorage = JSON.parse(localStorage.getItem('profile'));
+const profileData = userLocalStorage ? userLocalStorage.result : {};
 
 const inicialState = {
     user: Object.assign(
         {},
         userInicialState,
-        ...Object.keys(userInicialState).map(keys => keys in mookup && { [keys]: mookup[keys] })
+        ...Object.keys(userInicialState).map(keys => keys in profileData && { [keys]: profileData[keys] })
     ),
 };
 
@@ -35,7 +32,6 @@ export default (state = inicialState, action) => {
                 }
             };
         case AUTH_USER:
-            console.log(action.payload);
             localStorage.setItem('profile', JSON.stringify({ ...action.payload }));
             return {
                 ...state,
@@ -50,6 +46,7 @@ export default (state = inicialState, action) => {
             localStorage.clear();
             return {
                 ...state,
+                user: userInicialState
             };
         default:
             return state;

@@ -57,6 +57,18 @@ const userSchema = new mongoose.Schema({
     cpf: {
         type: String,
         required: true
+    },
+    gender: {
+        type: String,
+        required: true
+    },
+    profileType: {
+        type: String,
+        required: true
+    },
+    church: {
+        type: String,
+        required: true
     }
 });
 

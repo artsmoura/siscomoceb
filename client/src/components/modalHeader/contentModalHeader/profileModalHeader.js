@@ -1,12 +1,33 @@
 import React from 'react';
+import Button from '../../Button/button';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../../modules/Auth/redux/authAction';
+import { useNavigate } from 'react-router-dom';
 
-function ProfileModalHeader() {
+function ProfileModalHeader(props) {
+
+    const user = props.user;
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
+    const handleLogout = () => {
+        dispatch(logout());
+        navigate('/');
+    };
+
     return (
         <div className='contentModalHeader'>
-            <div className='profileImg'>
+            {/* <div className='profileImg'>
                 <img src="img/avatar.png" alt='perfil'></img>
-            </div>
-            <p>Arthur</p>
+            </div> */}
+            <p>{user.name}</p>
+            <p>{user.email}</p>
+            <Button
+                name="btnLogout"
+                className="btnBlue"
+                text="Sair"
+                onClick={handleLogout}
+            />
         </div>
     );
 }
