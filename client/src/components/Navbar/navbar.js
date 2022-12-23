@@ -87,7 +87,7 @@ const Navbar = (props) => {
                     :
                     <Button
                         name="menu"
-                        icon={<BiMenu />}
+                        icon={<BiMenu size={"2em"} />}
                     />
 
                 }

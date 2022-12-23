@@ -17,11 +17,17 @@ function ProfileModalHeader(props) {
 
     return (
         <div className='contentModalHeader'>
-            {/* <div className='profileImg'>
+            <div className='profileImg'>
                 <img src="img/avatar.png" alt='perfil'></img>
-            </div> */}
-            <p>{user.name}</p>
+            </div>
+            <p>{user.name.toLowerCase()} {user.sobrenome.toLowerCase()}</p>
             <p>{user.email}</p>
+            <Button
+                name="btnEditProfile"
+                className="btnBlue"
+                text="Editar perfil"
+                onClick={() => console.log('EDITAR PERFIL')}
+            />
             <Button
                 name="btnLogout"
                 className="btnBlue"

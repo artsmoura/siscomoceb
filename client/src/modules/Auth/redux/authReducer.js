@@ -10,8 +10,19 @@ const userInicialState = {
     passwordConfirm: ''
 };
 
-const userLocalStorage = JSON.parse(localStorage.getItem('profile'));
-const profileData = userLocalStorage ? userLocalStorage.result : {};
+const profileData = {
+    cpf: "056.119.181-66",
+    dateNascimento: "1995-06-13T00:00:00.000Z",
+    email: "arthuzin45@gmail.com",
+    name: "ARTHUR",
+    password: "$2b$12$qnT8qfJWrG.s/l2n8iU5K.pfRzTW2FLNYjyDh75CuzTkShAK8hmHG",
+    sobrenome: "SIMOES",
+    __v: 0,
+    _id: "639bb8dc360ed4772b8a50e3"
+};
+
+// const userLocalStorage = JSON.parse(localStorage.getItem('profile'));
+// const profileData = userLocalStorage ? userLocalStorage.result : {};
 
 const inicialState = {
     user: Object.assign(

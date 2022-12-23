@@ -21,3 +21,36 @@
     height: 0;
     visibility: hidden;
 }
+
+.contentModalHeader {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.contentModalHeader>p:nth-child(2) {
+    text-transform: capitalize;
+    margin-bottom: -10px;
+}
+
+.contentModalHeader>p:nth-child(3) {
+    opacity: 0.6;
+}
+
+.contentModalHeader>.profileImg {
+    width: 100%;
+    right: 0;
+    position: relative;
+    height: 80px;
+    margin-top: 20px;
+}
+
+.contentModalHeader>.profileImg>img {
+    width: 80px;
+    height: 80px;
+}
+
+.contentModalHeader>.btnBlue {
+    width: 80%;
+}

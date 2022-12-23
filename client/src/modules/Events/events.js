@@ -12,6 +12,7 @@ const EventPage = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const events = useSelector((state) => state.eventState.events);
+    const user = useSelector((state) => state.authState.user);
 
     /* console.log(events); */
 
@@ -27,12 +28,14 @@ const EventPage = () => {
         dispatch(listEvents());
     }, [dispatch]);
 
+    const name = user.name[0].toUpperCase() + user.name.substring(1).toLowerCase();
+
     return (
         <div className='eventBox'>
             <h1>
                 {/* {useReducer.gender === 'masculino' ? "Bem vindo" : "Bem vinda"}
                 {useReducer.name} */}
-                Bem vinda,
+                Bem vindo, {name}
             </h1>
             <h2>Próximos Eventos</h2>
             <div className='eventCard'>

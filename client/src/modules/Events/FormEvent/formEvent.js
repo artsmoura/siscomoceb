@@ -6,12 +6,14 @@ import './formEvent.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { createEvent, updateAccommodation, updateContentEvent } from "../redux/eventsAction";
 import Checkbox from "../../../components/Checkbox/checkbox";
+import { useNavigate } from "react-router-dom";
 
 const FormEvent = () => {
 
     const event = useSelector((state) => state.eventState.event);
 
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleFileUpload = (e) => {
         dispatch(updateContentEvent({
@@ -106,8 +108,8 @@ const FormEvent = () => {
                         type="submit"
                         name="btnForm"
                         className="btnBlue"
-                        text="Criar"
-                        onClick={handleSubmit}
+                        text="Cancelar"
+                        onClick={() => navigate(-1) || navigate('/')}
                     />
                     <Button
                         type="submit"
