@@ -1,16 +1,17 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Button from "../../../components/Button/button";
 import Input from "../../../components/Input/input";
 import FileBase from 'react-file-base64';
 import './formEvent.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { createEvent, updateAccommodation, updateContentEvent } from "../redux/eventsAction";
+import { clearFormInput, createEvent, updateAccommodation, updateContentEvent } from "../redux/eventsAction";
 import Checkbox from "../../../components/Checkbox/checkbox";
 import { useNavigate } from "react-router-dom";
 
 const FormEvent = () => {
 
     const event = useSelector((state) => state.eventState.event);
+    const [cancelButton, setCancelButton] = useState(false);
 
     const dispatch = useDispatch();
     const navigate = useNavigate();
@@ -24,6 +25,17 @@ const FormEvent = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(createEvent(event));
+    };
+
+    useEffect(() => {
+        if (cancelButton === true) {
+            navigate(-1) || navigate('/');
+        }
+    }, [cancelButton]);
+
+    const handleCancelClick = () => {
+        dispatch(clearFormInput());
+        setCancelButton(true);
     };
 
     return (
@@ -49,15 +61,46 @@ const FormEvent = () => {
                         isRequired={true}
                         className="formInput"
                     />
-                    <Input
-                        type="date"
-                        name="dateEvent"
-                        label="Data do Evento"
-                        onChange={(e) => dispatch(updateContentEvent(e))}
-                        value={event.dateEvent}
-                        isRequired={true}
-                        className="formInput"
-                    />
+                    <div className="dateRow">
+                        <Input
+                            type="date"
+                            name="dateStartEvent"
+                            label="Data de início do Evento"
+                            onChange={(e) => dispatch(updateContentEvent(e))}
+                            value={event.dateStartEvent}
+                            isRequired={true}
+                            className="formInput"
+                        />
+                        <Input
+                            type="date"
+                            name="dateEndEvent"
+                            label="Data final do Evento"
+                            onChange={(e) => dispatch(updateContentEvent(e))}
+                            value={event.dateEndEvent}
+                            isRequired={true}
+                            className="formInput"
+                        />
+                    </div>
+                    <div className="dateRow">
+                        <Input
+                            type="date"
+                            name="dateStartSub"
+                            label="Data de início das inscrições"
+                            onChange={(e) => dispatch(updateContentEvent(e))}
+                            value={event.dateStartSub}
+                            isRequired={true}
+                            className="formInput"
+                        />
+                        <Input
+                            type="date"
+                            name="dateEndSub"
+                            label="Data final das inscrições"
+                            onChange={(e) => dispatch(updateContentEvent(e))}
+                            value={event.dateEndSub}
+                            isRequired={true}
+                            className="formInput"
+                        />
+                    </div>
                     <Input
                         type="text"
                         name="location"
@@ -107,9 +150,9 @@ const FormEvent = () => {
                     <Button
                         type="submit"
                         name="btnForm"
-                        className="btnBlue"
+                        className="btnSilver"
                         text="Cancelar"
-                        onClick={() => navigate(-1) || navigate('/')}
+                        onClick={() => handleCancelClick()}
                     />
                     <Button
                         type="submit"
@@ -123,5 +166,7 @@ const FormEvent = () => {
         </div>
     );
 };
+
+
 
 export default FormEvent;

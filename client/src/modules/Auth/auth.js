@@ -7,7 +7,7 @@ import './auth.css';
 import { authUser, clearAuthFields, login, updateContentAuth, register } from './redux/authAction';
 import { GoogleLogin } from 'react-google-login';
 
-export const Auth = () => {
+const Auth = () => {
 
     const dispatch = useDispatch();
     const user = useSelector((state) => state.authState.user);

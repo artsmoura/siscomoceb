@@ -26,7 +26,7 @@ function ProfileModalHeader(props) {
                 name="btnEditProfile"
                 className="btnBlue"
                 text="Editar perfil"
-                onClick={() => console.log('EDITAR PERFIL')}
+                onClick={() => navigate("/perfil")}
             />
             <Button
                 name="btnLogout"

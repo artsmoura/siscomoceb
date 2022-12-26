@@ -8,6 +8,11 @@
     flex-direction: column;
     background-color: white;
     margin-top: 50px;
+    margin: 0 auto;
+}
+
+.boxForm {
+    margin-top: 30px;
 }
 
 .boxForm form {
@@ -19,10 +24,18 @@
 }
 
 .accommodationBox {
-    max-width: 96.5%;
+    max-width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.accommodationBox>.inputBox {
+    width: 50%;
+}
+
+.accommodationBox>.inputBox>.formInput {
+    width: 91.3%;
 }
 
 .btnBox {
@@ -31,4 +44,27 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
+}
+
+.boxForm>.btnBox>.btnBlue,
+.boxForm>.btnBox>.btnSilver {
+    min-width: 100px;
+    margin-bottom: 15px;
+    margin-top: 15px;
+}
+
+.dateRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.dateRow>.inputBox {
+    min-width: 300px;
+    max-width: 300px;
+}
+
+.dateRow>.inputBox>.formInput {
+    min-width: 270px;
+    max-width: 270px;
 }

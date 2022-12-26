@@ -22,13 +22,35 @@
     font-weight: 800;
 }
 
-.btnBlue .button {
+.btnBlue>.button {
     color: white;
 }
 
 .btnBlue:hover,
 .btnBlue>button:hover {
     background-color: rgb(39, 77, 247);
+}
+
+.btnSilver {
+    border-radius: 5px;
+    background-color: rgb(188, 188, 189);
+    border: 0px;
+    padding: 8px;
+    margin: 5px;
+}
+
+.btnSilver>span {
+    font-weight: 800;
+}
+
+.btnSilver>.button {
+    color: white;
+}
+
+.btnSilver:hover,
+.btnSilver>button:hover {
+    background-color: rgb(94, 102, 116);
+    color: white;
 }
 
 /* --------> BOTÂO DA NAVBAR  */

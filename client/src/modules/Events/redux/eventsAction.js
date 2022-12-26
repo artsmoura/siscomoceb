@@ -7,6 +7,7 @@ export const EVENTS_CREATE_SUCCESS = "EVENTS_CREATE_SUCCESS";
 export const EVENTS_CREATE_ERROR = "EVENTS_CREATE_ERROR";
 export const UPDATE_CONTENT_EVENT = "UPDATE_CONTENT_EVENT";
 export const UPDATE_ACCOMMODATION = "UPDATE_ACCOMMODATION";
+export const CLEAR_FORM_INPUT = "CLEAR_FORM_INPUT";
 
 export const listEvents = () => async (dispatch) => {
     try {
@@ -52,3 +53,7 @@ export const updateAccommodation = e => async (dispatch) => {
         payload: e
     });
 };
+
+export const clearFormInput = () => ({
+    type: CLEAR_FORM_INPUT
+});

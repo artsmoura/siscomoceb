@@ -14,8 +14,6 @@ const EventPage = () => {
     const events = useSelector((state) => state.eventState.events);
     const user = useSelector((state) => state.authState.user);
 
-    /* console.log(events); */
-
     const handleClick = (e) => {
         console.log('clicou');
     };

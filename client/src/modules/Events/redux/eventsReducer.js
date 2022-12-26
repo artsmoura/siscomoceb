@@ -1,4 +1,4 @@
-import { EVENTS_CREATE_SUCCESS, EVENTS_LOAD_SUCCESS, UPDATE_ACCOMMODATION, UPDATE_CONTENT_EVENT } from './eventsAction';
+import { CLEAR_FORM_INPUT, EVENTS_CREATE_SUCCESS, EVENTS_LOAD_SUCCESS, UPDATE_ACCOMMODATION, UPDATE_CONTENT_EVENT } from './eventsAction';
 
 const eventoInicialState = {
     name: '',
@@ -11,7 +11,11 @@ const eventoInicialState = {
         { name: 'Chalé', checked: false, valor: '' },
         { name: 'Chalé Casal', checked: false, valor: '' },
         { name: 'Barraca', checked: false, valor: '' }
-    ]
+    ],
+    dateStartEvent: '',
+    dateEndEvent: '',
+    dateStartSub: '',
+    dateEndSub: ''
 };
 
 const inicialState = {
@@ -42,7 +46,11 @@ export default (state = inicialState, action) => {
                         ...state.event,
                         accommodation: [
                             ...state.event.accommodation.map((item) => item.name === action.payload.target.name ?
-                                { ...item, checked: action.payload.target.checked } : item
+                                {
+                                    ...item,
+                                    checked: action.payload.target.checked,
+                                    valor: action.payload.target.checked === true ? state.event.accommodation.valor : ''
+                                } : item
                             )
                         ]
                     }
@@ -69,6 +77,8 @@ export default (state = inicialState, action) => {
                     ]
                 }
             };
+        case CLEAR_FORM_INPUT:
+            return inicialState;
         default:
             return state;
     }
