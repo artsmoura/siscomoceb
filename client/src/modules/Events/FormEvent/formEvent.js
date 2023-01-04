@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { clearFormInput, createEvent, updateAccommodation, updateContentEvent } from "../redux/eventsAction";
 import Checkbox from "../../../components/Checkbox/checkbox";
 import { useNavigate } from "react-router-dom";
+import File64 from "../../../components/File64/file64";
 
 const FormEvent = () => {
 
@@ -16,11 +17,6 @@ const FormEvent = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const handleFileUpload = (e) => {
-        dispatch(updateContentEvent({
-            target: { name: 'image', value: e }
-        }));
-    };
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -137,12 +133,18 @@ const FormEvent = () => {
                         })
                     }
 
-                    <div>
-                        <FileBase
+                    <div className="inputFile">
+                        {/* <FileBase
                             id="formImage"
                             type="file"
                             multiple={false}
                             onDone={({ base64 }) => (handleFileUpload(base64))}
+                        /> */}
+                        <File64
+                            label={'Capa do Evento'}
+                            className={'inputFileBtn'}
+                            action={updateContentEvent}
+                            alt={'imagem evento'}
                         />
                     </div>
                 </form>

@@ -6,6 +6,8 @@ import './events.css';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { listEvents } from './redux/eventsAction';
+import Modal from '../../components/Modal/modal';
+import { setTypeModal } from '../../reduxLayout/layoutAction';
 
 const EventPage = () => {
 
@@ -13,6 +15,7 @@ const EventPage = () => {
     const navigate = useNavigate();
     const events = useSelector((state) => state.eventState.events);
     const user = useSelector((state) => state.authState.user);
+    const modalType = useSelector((state) => state.layoutState.modal);
 
     const handleClick = (e) => {
         console.log('clicou');
@@ -26,7 +29,17 @@ const EventPage = () => {
         dispatch(listEvents());
     }, [dispatch]);
 
-    const name = user.name[0].toUpperCase() + user.name.substring(1).toLowerCase();
+    const name = user.name ? user.name[0].toUpperCase() + user.name.substring(1).toLowerCase() : '';
+
+    const modal = (e) => {
+        switch (e) {
+            case 'delete':
+                { console.log('entrou?'); }
+                return <Modal />;
+            default:
+                return;
+        }
+    };
 
     return (
         <div className='eventBox'>
@@ -51,6 +64,11 @@ const EventPage = () => {
                     ))
                 }
             </div>
+            <Button
+                text="ALOU"
+                className='btnBlue'
+                onClick={() => dispatch(setTypeModal('delete'))}
+            />
             <div className='addEvent'>
                 <Button
                     name="addEvent"
@@ -59,6 +77,7 @@ const EventPage = () => {
                     onClick={goCreateEvent}
                 />
             </div>
+            {modal(modalType)}
         </div>
     );
 };

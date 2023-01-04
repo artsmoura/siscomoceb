@@ -59,16 +59,13 @@ const userSchema = new mongoose.Schema({
         required: true
     },
     gender: {
-        type: String,
-        required: true
+        type: String
     },
     profileType: {
-        type: String,
-        required: true
+        type: String
     },
     church: {
-        type: String,
-        required: true
+        type: String
     }
 });
 

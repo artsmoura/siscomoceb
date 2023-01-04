@@ -25,8 +25,7 @@ export const listEvents = () => async (dispatch) => {
 };
 
 export const createEvent = (event) => async (dispatch) => {
-    console.log(event);
-    /* try {
+    try {
         const { data } = await api.createEvent(event);
         dispatch({
             type: EVENTS_CREATE_SUCCESS,
@@ -37,7 +36,7 @@ export const createEvent = (event) => async (dispatch) => {
             type: EVENTS_CREATE_ERROR,
             payload: error.message
         });
-    } */
+    }
 };
 
 export const updateContentEvent = e => async (dispatch) => {

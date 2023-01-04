@@ -19,8 +19,7 @@ const App = () => {
             {loginPage !== '/login' ? <Navbar screenSize={screenSize.width} /> : null}
             <div className="pageBox">
                 <Routes>
-                    {/* {userLogin && <Route path="/" element={<EventPage />} />} */}
-                    <Route path="/" element={<EventPage />} />
+                    {userLogin && <Route path="/" element={<EventPage />} />}
                     <Route path="login" element={<Auth />} />
                     <Route path="criarevento" element={<FormEvent />} />
                     <Route path="/" exact element={<Navigate replace to="/login" />} />

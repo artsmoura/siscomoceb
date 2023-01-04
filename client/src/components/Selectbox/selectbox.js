@@ -1,12 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { BiChevronDown } from 'react-icons/bi';
+import { useOutsideClick } from '../../utils';
 import './selectbox.css';
 
 
 const Selectbox = (props) => {
 
     const listSelect = props.options.option;
-
+    const ref = useRef();
     const [isActive, setIsActive] = useState(false);
     const [optionsFilter, setOptionsFilter] = useState([]);
 
@@ -28,9 +29,12 @@ const Selectbox = (props) => {
         setIsActive(false);
     };
 
+
+    useOutsideClick(ref, () => setIsActive(false));
+
     return (
         <>
-            <div className="selectBox">
+            <div className="selectBox" ref={ref}>
                 <div className={`selectBtn ${isActive}`} onClick={() => setIsActive(!isActive)}>
                     <span className={`labelFloating${props.disabled ? "-disabled" : ""}`}>{props.label}</span>
                     <span>{props.selected}</span>
