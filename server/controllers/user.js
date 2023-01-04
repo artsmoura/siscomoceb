@@ -1,12 +1,12 @@
-import bcrypt from 'bcrypt';
-import jwt from 'jsonwebtoken';
-import mongoose from 'mongoose';
-import dotenv from 'dotenv';
-import { User, validate } from '../models/userSchema.js';
+const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose');
+const dotenv = require('dotenv');
+const { User, validate } = require('../models/userSchema.js');
 
 dotenv.config();
 
-export const login = async (req, res) => {
+const login = async (req, res) => {
     const { email, password } = req.body;
 
     try {
@@ -35,7 +35,7 @@ export const login = async (req, res) => {
     }
 };
 
-export const register = async (req, res) => {
+const register = async (req, res) => {
     try {
         /* const { error } = validate(req.body);
         if (error) {
@@ -57,3 +57,5 @@ export const register = async (req, res) => {
         res.status(500).json({ message: 'Algo deu errado' });
     }
 };
+
+module.exports = { login, register };

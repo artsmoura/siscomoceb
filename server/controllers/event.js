@@ -1,9 +1,9 @@
-import express from 'express';
-import EventSchema from "../models/eventSchema.js";
+const express = require('express');
+const EventSchema = require("../models/eventSchema.js");
 
 const router = express.Router();
 
-export const getEvents = async (req, res) => {
+const getEvents = async (req, res) => {
     try {
         const events = await EventSchema.find();
         res.status(200).json(events);
@@ -13,7 +13,7 @@ export const getEvents = async (req, res) => {
     }
 };
 
-export const createEvent = async (req, res) => {
+const createEvent = async (req, res) => {
     const event = req.body;
 
     const newEvent = new EventSchema(event);
@@ -27,4 +27,4 @@ export const createEvent = async (req, res) => {
     }
 };
 
-export default router;
+module.exports = { getEvents, createEvent };

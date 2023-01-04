@@ -1,35 +1,7 @@
-// import mongoose from "mongoose";
-// import Joi from "joi";
-
-// const userSchema = new mongoose.Schema({
-//     name: { type: String, required: true },
-//     email: { type: String, required: true },
-//     password: { type: String, required: true },
-//     id: { type: String }
-// });
-
-// const User = mongoose.model("User", userSchema);
-
-// const validate = (user) => {
-//     const schema = Joi.object({
-//         firstName: Joi.string().required().label("Nome"),
-//         lastName: Joi.string().required().label("Sobrenome"),
-//         email: Joi.string().email().required().label("Email"),
-//         password: Joi.string().required().label("Senha")
-//     });
-//     return schema.validate(user);
-// };
-
-// module.exports = { User, validate };
-
-// const mongoose = require('mongoose');
-// const jwt = require('jsonwebtoken');
-// const Joi = require('joi');
-
-import mongoose from 'mongoose';
-import jwt from 'jsonwebtoken';
-import Joi from 'joi';
-import dotenv from 'dotenv';
+const mongoose = require('mongoose');
+const jwt = require('jsonwebtoken');
+const Joi = require('joi');
+const dotenv = require('dotenv');
 
 dotenv.config();
 
@@ -74,9 +46,9 @@ userSchema.methods.generateAuthToken = function () {
     return token;
 };
 
-export const User = mongoose.model("user", userSchema);
+const User = mongoose.model("user", userSchema);
 
-export const validate = (data) => {
+const validate = (data) => {
     const schema = Joi.object({
         firstName: Joi.string().required().label("name"),
         lastName: Joi.string().required().label("sobrenome"),
@@ -88,3 +60,5 @@ export const validate = (data) => {
     });
     return schema.validate(data);
 };
+
+module.exports = { User, validate };
