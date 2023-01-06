@@ -17,6 +17,7 @@ const Input = (props) => {
                 required={props.isRequired && props.isRequired}
                 className={props.className && props.className}
                 disabled={props.disabled ? true : false}
+                onBlur={props.inputOut && props.inputOut}
             >
             </input>
             <span className={`labelFloating${props.disabled ? "-disabled" : ""}`}>{props.label}</span>

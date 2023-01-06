@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import Button from "../Button/button";
+import { BiDotsVerticalRounded } from 'react-icons/bi';
 import './cards.css';
 
 const Card = (props) => {
+
+    const [isActive, setIsActive] = useState(false);
+
+    console.log(isActive);
+
     return (
         <div className="cardBox" key={props.key && props.key}>
             {props.image ?
@@ -22,6 +28,14 @@ const Card = (props) => {
                 className='btnBlue'
                 onClick={props.clickAction}
             />
+            <div className="cardOption">
+                <Button
+                    name="option"
+                    className='optionBtn'
+                    icon={<BiDotsVerticalRounded size={"2em"} />}
+                    onClick={() => setIsActive(!isActive)}
+                />
+            </div>
         </div>
     );
 };

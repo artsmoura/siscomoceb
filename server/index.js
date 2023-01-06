@@ -5,6 +5,7 @@ const cors = require('cors');
 const dotenv = require('dotenv');
 const eventsRoutes = require('./routes/events.js');
 const userRoutes = require('./routes/users.js');
+const churchRoutes = require('./routes/church.js');
 
 const app = express();
 dotenv.config();
@@ -15,6 +16,7 @@ app.use(cors());
 
 app.use('/events', eventsRoutes);
 app.use('/user', userRoutes);
+app.use('/church', churchRoutes);
 
 const CONNECTION_URL = process.env.CONNECTION_URL;
 const PORT = process.env.PORT || 5000;

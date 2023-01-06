@@ -1,4 +1,4 @@
-import { AUTH_USER, CLEAR_AUTH_FIELDS, LOGOUT, UPDATE_CONTENT_AUTH } from "./authAction";
+import { AUTH_USER, CLEAR_AUTH_FIELDS, CONSULT_CEP_SUCCESS, LIST_CITY_SUCCESS, LIST_STATE_SUCCESS, LOGOUT, UPDATE_CONTENT_AUTH } from "./authAction";
 
 const userInicialState = {
     name: '',
@@ -26,6 +26,8 @@ const inicialState = {
         userInicialState,
         ...Object.keys(userInicialState).map(keys => keys in profileData && { [keys]: profileData[keys] })
     ),
+    states: [],
+    cities: []
 };
 
 export default (state = inicialState, action) => {
@@ -54,6 +56,29 @@ export default (state = inicialState, action) => {
             return {
                 ...state,
                 user: userInicialState
+            };
+        case LIST_STATE_SUCCESS:
+            return {
+                ...state,
+                states: action.payload.map(state => ({
+                    id: state.id,
+                    name: state.nome
+                }))
+            };
+        case LIST_CITY_SUCCESS:
+            return {
+                ...state,
+                cities: action.payload
+            };
+        case CONSULT_CEP_SUCCESS:
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    state: action.payload.state,
+                    city: action.payload.city,
+                    address: action.payload.street + ' ' + action.payload.neighborhood,
+                }
             };
         default:
             return state;

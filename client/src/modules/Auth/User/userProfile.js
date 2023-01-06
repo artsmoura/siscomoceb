@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Button from '../../../components/Button/button';
 import Input from '../../../components/Input/input';
 import Selectbox from '../../../components/Selectbox/selectbox';
-import { updateContentAuth } from '../redux/authAction';
+import { consultCEP, listCity, listState, updateContentAuth } from '../redux/authAction';
 import File64 from '../../../components/File64/file64';
 import { BiCamera } from 'react-icons/bi';
 import './user.css';
@@ -12,6 +12,7 @@ import './user.css';
 const UserProfile = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const authState = useSelector((state) => state.authState);
     const user = useSelector((state) => state.authState.user);
 
     const handleSelect = (e) => {
@@ -50,6 +51,8 @@ const UserProfile = () => {
             name: "viuvo"
         }
     ];
+
+    console.log(authState.states.name);
 
     return (
         <div className="container">
@@ -133,6 +136,7 @@ const UserProfile = () => {
                         onChange={(e) => dispatch(updateContentAuth(e))}
                         value={user.cep}
                         className="formInput"
+                        inputOut={() => dispatch(consultCEP(user.cep))}
                     />
                     <Input
                         type="text"

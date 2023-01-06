@@ -13,7 +13,10 @@ const eventSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    subscribed: [String],
+    subscribed: {
+        type: Array,
+        default: []
+    },
     createAt: {
         type: Date,
         default: new Date()
@@ -33,4 +36,4 @@ const eventSchema = mongoose.Schema({
 
 const EventSchema = mongoose.model('Event', eventSchema);
 
-module.exports = { EventSchema };
+module.exports = EventSchema;

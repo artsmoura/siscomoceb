@@ -26,6 +26,8 @@ const login = async (req, res) => {
             email: existUser.email, id: existUser._id
         }, process.env.JWTPRIVATEKEY, { expiresIn: "12h" });
 
+        res.cookie('jwt', token, { httpOnly: true, sameSite: 'None', secure: true, maxAge: 24 * 60 * 60 * 1000 });
+
         res.status(200).json({
             result: existUser, token
         });
@@ -36,22 +38,28 @@ const login = async (req, res) => {
 };
 
 const register = async (req, res) => {
+
+
     try {
-        /* const { error } = validate(req.body);
-        if (error) {
-            return res.status(400).send;
-        } */
 
         const user = await User.findOne({ email: req.body.email });
         if (user) {
-            return res.status(409).json({ message: "Email já registrado" });
+            return res.status(400).json({ message: "Email já registrado" });
         }
 
         const salt = await bcrypt.genSalt(Number(process.env.SALT));
         const hashPassword = await bcrypt.hash(req.body.password, salt);
 
-        await User.create({ ...req.body, password: hashPassword });
-        res.status(201).json({ message: "Usuario criado com sucesso" });
+        const dateFormat = req.body.dateNascimento.replace(/T\d{2}:\d{2}:\d{2}.\d{3}Z/g, '');
+
+        const result = await User.create({ ...req.body, password: hashPassword, dateNascimento: dateFormat });
+
+        const token = jwt.sign({
+            email: result.email, id: result._id
+        }, process.env.JWTPRIVATEKEY, { expiresIn: "12h" });
+
+
+        res.status(200).json({ result, token });
 
     } catch (error) {
         res.status(500).json({ message: 'Algo deu errado' });

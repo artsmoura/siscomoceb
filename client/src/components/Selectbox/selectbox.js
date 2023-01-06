@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { BiChevronDown } from 'react-icons/bi';
+import { useDispatch } from 'react-redux';
 import { useOutsideClick } from '../../utils';
 import './selectbox.css';
 
 
 const Selectbox = (props) => {
 
+    const dispatch = useDispatch();
     const listSelect = props.options.option;
     const ref = useRef();
     const [isActive, setIsActive] = useState(false);
@@ -29,13 +31,19 @@ const Selectbox = (props) => {
         setIsActive(false);
     };
 
+    const handleActive = () => {
+        console.log('clicou??');
+        setIsActive(!isActive);
+        props.actionList && dispatch(props.actionList);
+    };
+
 
     useOutsideClick(ref, () => setIsActive(false));
 
     return (
         <>
             <div className="selectBox" ref={ref}>
-                <div className={`selectBtn ${isActive}`} onClick={() => setIsActive(!isActive)}>
+                <div className={`selectBtn ${isActive}`} onClick={() => /* setIsActive(!isActive) */ handleActive()}>
                     <span className={`labelFloating${props.disabled ? "-disabled" : ""}`}>{props.label}</span>
                     <span>{props.selected}</span>
                     <BiChevronDown />
@@ -44,8 +52,6 @@ const Selectbox = (props) => {
                     <div className="selectConteudo">
                         {optionsFilter.map((option) => (
                             <div key={option.value ? option.value : option.name} className="selectItem" onClick={(e) => {
-                                // handleSelect(option);
-                                // setIsActive(false)
                                 changeOption(option);
                             }}>
                                 {option.name}

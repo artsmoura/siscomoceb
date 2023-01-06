@@ -9,6 +9,7 @@
     flex-direction: column;
     margin: 15px;
     padding-bottom: 10px;
+    position: relative;
 }
 
 .cardInfo {
@@ -44,4 +45,10 @@
     background-position: 30% 20%;
     background-size: cover;
     margin-top: 10px;
+}
+
+.cardOption {
+    position: absolute;
+    right: 0;
+    top: 7px;
 }

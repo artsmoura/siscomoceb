@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const jwt = require('jsonwebtoken');
 const Joi = require('joi');
 const dotenv = require('dotenv');
 
@@ -8,19 +7,26 @@ dotenv.config();
 const userSchema = new mongoose.Schema({
     name: {
         type: String,
-        required: true
+        required: true,
+        min: 2,
+        max: 50
     },
     sobrenome: {
         type: String,
-        required: true
+        required: true,
+        min: 2,
+        max: 50
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        max: 50,
+        unique: true
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        min: 5
     },
     dateNascimento: {
         type: Date,
@@ -30,21 +36,11 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    gender: {
-        type: String
-    },
-    profileType: {
-        type: String
-    },
-    church: {
-        type: String
-    }
+    gender: String,
+    profileType: String,
+    church: String,
+    image: String,
 });
-
-userSchema.methods.generateAuthToken = function () {
-    const token = jwt.sign({ _id: this._id }, process.env.JWTPRIVATEKEY, { expiresIn: "12h" });
-    return token;
-};
 
 const User = mongoose.model("user", userSchema);
 

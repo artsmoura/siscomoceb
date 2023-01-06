@@ -3,9 +3,14 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const Auth = async (req, res, next) => {
+const Auth = (req, res, next) => {
     try {
-        const token = req.headers.authorization.split(" ")[1];
+        const authHeader = req.headers.authorization || req.headers.Authorization;
+        // const token = req.headers.authorization.split(" ")[1];
+        console.log(authHeader);
+        if (!authHeader?.startsWith('Bearer ')) return res.sendStatus(401);
+        const token = authHeader.split(' ')[1];
+
         const isOurToken = token.length < 500;
 
         let decodeData;
@@ -26,4 +31,4 @@ const Auth = async (req, res, next) => {
     }
 };
 
-module.exports = { Auth };
+module.exports = Auth;
