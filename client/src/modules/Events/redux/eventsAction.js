@@ -8,6 +8,8 @@ export const EVENTS_CREATE_ERROR = "EVENTS_CREATE_ERROR";
 export const UPDATE_CONTENT_EVENT = "UPDATE_CONTENT_EVENT";
 export const UPDATE_ACCOMMODATION = "UPDATE_ACCOMMODATION";
 export const CLEAR_FORM_INPUT = "CLEAR_FORM_INPUT";
+export const EVENT_LOAD_SUCCESS = "EVENTS_LOAD_SUCCESS";
+export const EVENT_LOAD_ERROR = "EVENT_LOAD_ERROR";
 
 export const listEvents = () => async (dispatch) => {
     try {
@@ -56,3 +58,22 @@ export const updateAccommodation = e => async (dispatch) => {
 export const clearFormInput = () => ({
     type: CLEAR_FORM_INPUT
 });
+
+export const deleteEvent = () => (console.log('deletou'));
+
+export const editEvent = () => (console.log('editou'));
+
+export const openEvent = (id) => async (dispatch) => {
+    try {
+        const { data } = await api.getEvent(id);
+        dispatch({
+            type: EVENT_LOAD_SUCCESS,
+            payload: data
+        });
+    } catch (error) {
+        dispatch({
+            type: EVENT_LOAD_ERROR,
+            payload: error.message
+        });
+    }
+};

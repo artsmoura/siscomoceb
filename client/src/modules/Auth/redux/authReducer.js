@@ -1,4 +1,4 @@
-import { AUTH_USER, CLEAR_AUTH_FIELDS, CONSULT_CEP_SUCCESS, LIST_CITY_SUCCESS, LIST_STATE_SUCCESS, LOGOUT, UPDATE_CONTENT_AUTH } from "./authAction";
+import { AUTH_USER, CHURCH_LOAD_SUCCESS, CLEAR_AUTH_FIELDS, CONSULT_CEP_SUCCESS, LIST_CITY_SUCCESS, LIST_STATE_SUCCESS, LOGOUT, UPDATE_CONTENT_AUTH } from "./authAction";
 
 const userInicialState = {
     name: '',
@@ -14,7 +14,8 @@ const userInicialState = {
     state: '',
     cep: '',
     city: '',
-    address: ''
+    address: '',
+    church: ''
 };
 
 const userLocalStorage = JSON.parse(localStorage.getItem('profile'));
@@ -27,7 +28,8 @@ const inicialState = {
         ...Object.keys(userInicialState).map(keys => keys in profileData && { [keys]: profileData[keys] })
     ),
     states: [],
-    cities: []
+    cities: [],
+    church: {}
 };
 
 export default (state = inicialState, action) => {
@@ -79,6 +81,17 @@ export default (state = inicialState, action) => {
                     city: action.payload.city,
                     address: action.payload.street + ' ' + action.payload.neighborhood,
                 }
+            };
+        case CHURCH_LOAD_SUCCESS:
+            return {
+                ...state,
+                church: action.payload.map(church => ({
+                    idCidade: church.idCidade,
+                    idFemoce: church.idFemoce,
+                    idIgreja: church.idIgreja,
+                    name: church.nomeIgreja
+                }
+                ))
             };
         default:
             return state;

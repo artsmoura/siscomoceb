@@ -5,9 +5,10 @@ import { BiPlus } from 'react-icons/bi';
 import './events.css';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { listEvents } from './redux/eventsAction';
+import { deleteEvent, editEvent, listEvents, openEvent } from './redux/eventsAction';
 import Modal from '../../components/Modal/modal';
 import { setTypeModal } from '../../reduxLayout/layoutAction';
+import { adjustDate } from '../../utils';
 
 const EventPage = () => {
 
@@ -17,8 +18,8 @@ const EventPage = () => {
     const user = useSelector((state) => state.authState.user);
     const modalType = useSelector((state) => state.layoutState.modal);
 
-    const handleClick = (e) => {
-        console.log('clicou');
+    const handleDetailsClick = (e) => {
+        navigate('/details');
     };
 
     const goCreateEvent = () => {
@@ -29,24 +30,30 @@ const EventPage = () => {
         dispatch(listEvents());
     }, [dispatch]);
 
-    const name = user.name ? user.name[0].toUpperCase() + user.name.substring(1).toLowerCase() : '';
+    const dropdownActions = [{
+        name: "Deletar",
+        action: setTypeModal('delete')
+    },
+    {
+        name: "Editar",
+        action: editEvent
+    }];
 
     const modal = (e) => {
         switch (e) {
             case 'delete':
-                { console.log('entrou?'); }
                 return <Modal />;
             default:
                 return;
         }
     };
 
+    const name = user.name ? user.name[0].toUpperCase() + user.name.substring(1).toLowerCase() : '';
+
     return (
         <div className='eventBox'>
             <h1>
-                {/* {useReducer.gender === 'masculino' ? "Bem vindo" : "Bem vinda"}
-                {useReducer.name} */}
-                Bem vindo, {name}
+                {user.gender === 'feminino' ? "Bem vinda, " : "Bem vindo, "}{name}
             </h1>
             <h2>Próximos Eventos</h2>
             <div className='eventCard'>
@@ -54,21 +61,18 @@ const EventPage = () => {
                     events.map((event) => (
                         <Card
                             key={event.id}
-                            title={event.name}
+                            title={event.nomeEvento}
                             image={event.image}
-                            data={event.dateEvent}
-                            /* inscricaoDate={event.} */
-                            location={event.location}
-                            clickAction={handleClick}
+                            data={adjustDate(event.dataHoraInicio)}
+                            location={event.localEvento}
+                            clickAction={handleDetailsClick}
+                            cardOption={true}
+                            actions={dropdownActions}
+                        // clickCard={() => dispatch(openEvent(event.idEvento))}
                         />
                     ))
                 }
             </div>
-            <Button
-                text="ALOU"
-                className='btnBlue'
-                onClick={() => dispatch(setTypeModal('delete'))}
-            />
             <div className='addEvent'>
                 <Button
                     name="addEvent"

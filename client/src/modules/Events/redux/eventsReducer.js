@@ -1,21 +1,19 @@
-import { CLEAR_FORM_INPUT, EVENTS_CREATE_SUCCESS, EVENTS_LOAD_SUCCESS, UPDATE_ACCOMMODATION, UPDATE_CONTENT_EVENT } from './eventsAction';
+import { CLEAR_FORM_INPUT, EVENTS_CREATE_SUCCESS, EVENTS_LOAD_SUCCESS, EVENT_LOAD_SUCCESS, UPDATE_ACCOMMODATION, UPDATE_CONTENT_EVENT } from './eventsAction';
 
 const eventoInicialState = {
-    name: '',
-    description: '',
-    dateEvent: '',
-    location: '',
+    nomeEvento: '',
+    descricaoEvento: '',
+    tema: '',
+    localEvento: '',
     image: '',
-    accommodation: [
-        { name: 'Alojamento', checked: false, valor: '' },
-        { name: 'Chalé', checked: false, valor: '' },
-        { name: 'Chalé Casal', checked: false, valor: '' },
-        { name: 'Barraca', checked: false, valor: '' }
-    ],
-    dateStartEvent: '',
-    dateEndEvent: '',
+    dataHoraInicio: '',
+    dataHoraFim: '',
     dateStartSub: '',
-    dateEndSub: ''
+    dateEndSub: '',
+    programacao: '',
+    dataHoraInicioInscricao: '',
+    dataHoraFimInscricao: '',
+    idadeMinima: ''
 };
 
 const inicialState = {
@@ -77,10 +75,15 @@ export default (state = inicialState, action) => {
                     ]
                 }
             };
+        case EVENT_LOAD_SUCCESS:
+            console.log('entrou??');
+            return {
+                ...state,
+                event: action.payload
+            };
         case CLEAR_FORM_INPUT:
             return inicialState;
         default:
             return state;
     }
 };
-

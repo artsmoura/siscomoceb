@@ -39,3 +39,10 @@ export function useOutsideClick(ref, handler) {
         };
     }, [ref, handler]);
 };
+
+export const adjustDate = (d) => {
+    const date = new Date(d);
+    return `${(date.getDate() < 10 ? '0' + date.getDate() :
+        date.getDate())}/${((date.getMonth() + 1) < 10 ? '0' + (date.getMonth() + 1) :
+            (date.getMonth() + 1))}/${date.getFullYear()} - ${(date.getHours() < 10 ? '0' : 0) + date.getHours()}:${(date.getMinutes() < 10 ? '0' : '') + date.getMinutes()}`;
+};

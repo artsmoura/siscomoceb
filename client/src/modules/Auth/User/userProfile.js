@@ -1,10 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import Button from '../../../components/Button/button';
 import Input from '../../../components/Input/input';
 import Selectbox from '../../../components/Selectbox/selectbox';
-import { consultCEP, listCity, listState, updateContentAuth } from '../redux/authAction';
+import { consultCEP, getChurch, listCity, listState, updateContentAuth } from '../redux/authAction';
 import File64 from '../../../components/File64/file64';
 import { BiCamera } from 'react-icons/bi';
 import './user.css';
@@ -14,6 +14,7 @@ const UserProfile = () => {
     const navigate = useNavigate();
     const authState = useSelector((state) => state.authState);
     const user = useSelector((state) => state.authState.user);
+    const church = useSelector((state) => state.authState.church);
 
     const handleSelect = (e) => {
         dispatch(updateContentAuth({
@@ -21,6 +22,10 @@ const UserProfile = () => {
             value: e.target.value.value
         }));
     };
+
+    useEffect(() => {
+        dispatch(getChurch());
+    }, []);
 
     const option = [
         {
@@ -85,22 +90,24 @@ const UserProfile = () => {
                         value={user.email}
                         className="formInput"
                     />
-                    <Input
-                        type="text"
-                        name="cpf"
-                        label="CPF"
-                        onChange={(e) => dispatch(updateContentAuth(e))}
-                        value={user.cpf}
-                        className="formInput"
-                    />
-                    <Input
-                        type="date"
-                        name="dateNascimento"
-                        label="Data Nascimento"
-                        onChange={(e) => dispatch(updateContentAuth(e))}
-                        value={user.dateNascimento}
-                        className="formInput"
-                    />
+                    <div className='boxRow-2'>
+                        <Input
+                            type="text"
+                            name="cpf"
+                            label="CPF"
+                            onChange={(e) => dispatch(updateContentAuth(e))}
+                            value={user.cpf}
+                            className="formInput"
+                        />
+                        <Input
+                            type="date"
+                            name="dateNascimento"
+                            label="Data Nascimento"
+                            onChange={(e) => dispatch(updateContentAuth(e))}
+                            value={user.dateNascimento}
+                            className="formInput"
+                        />
+                    </div>
                     <div className='boxRow-2'>
                         <Selectbox
                             selected={user.sexo}
@@ -164,7 +171,16 @@ const UserProfile = () => {
                             className="formInput"
                         />
                     </div>
-
+                    <Selectbox
+                        selected={user.church}
+                        action={handleSelect}
+                        name="church"
+                        label="Igreja"
+                        options={{
+                            option: church
+                        }}
+                        hasDispatch={getChurch()}
+                    />
                     <File64
                         label={<BiCamera />}
                         className={'inputFileProfile'}

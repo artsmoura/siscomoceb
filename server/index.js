@@ -6,6 +6,7 @@ const dotenv = require('dotenv');
 const eventsRoutes = require('./routes/events.js');
 const userRoutes = require('./routes/users.js');
 const churchRoutes = require('./routes/church.js');
+const { User } = require('./models/userSchema.js');
 
 const app = express();
 dotenv.config();

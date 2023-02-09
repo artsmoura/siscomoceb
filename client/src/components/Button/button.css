@@ -82,3 +82,11 @@
     background-color: rgb(39, 77, 247);
     cursor: pointer
 }
+
+.dropdownBtn {
+    padding: 5px;
+}
+
+.dropdownBtn:hover {
+    background-color: rgb(230, 230, 230);
+}

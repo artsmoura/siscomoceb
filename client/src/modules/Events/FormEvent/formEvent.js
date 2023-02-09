@@ -41,38 +41,38 @@ const FormEvent = () => {
                 <form>
                     <Input
                         type="text"
-                        name="name"
+                        name="nomeEvento"
                         label="Nome do Evento"
                         onChange={(e) => dispatch(updateContentEvent(e))}
-                        value={event.name}
+                        value={event.nomeEvento}
                         isRequired={true}
                         className="formInput"
                     />
                     <Input
                         type="text"
-                        name="description"
+                        name="descricaoEvento"
                         label="Descrição do Evento"
                         onChange={(e) => dispatch(updateContentEvent(e))}
-                        value={event.description}
+                        value={event.descricaoEvento}
                         isRequired={true}
                         className="formInput"
                     />
                     <div className="dateRow">
                         <Input
                             type="date"
-                            name="dateStartEvent"
+                            name="dataHoraInicio"
                             label="Data de início do Evento"
                             onChange={(e) => dispatch(updateContentEvent(e))}
-                            value={event.dateStartEvent}
+                            value={event.dataHoraInicio}
                             isRequired={true}
                             className="formInput"
                         />
                         <Input
                             type="date"
-                            name="dateEndEvent"
+                            name="dataHoraFim"
                             label="Data final do Evento"
                             onChange={(e) => dispatch(updateContentEvent(e))}
-                            value={event.dateEndEvent}
+                            value={event.dataHoraFim}
                             isRequired={true}
                             className="formInput"
                         />
@@ -80,33 +80,33 @@ const FormEvent = () => {
                     <div className="dateRow">
                         <Input
                             type="date"
-                            name="dateStartSub"
+                            name="dataHoraInicioInscricao"
                             label="Data de início das inscrições"
                             onChange={(e) => dispatch(updateContentEvent(e))}
-                            value={event.dateStartSub}
+                            value={event.dataHoraInicioInscricao}
                             isRequired={true}
                             className="formInput"
                         />
                         <Input
                             type="date"
-                            name="dateEndSub"
+                            name="dataHoraFimInscricao"
                             label="Data final das inscrições"
                             onChange={(e) => dispatch(updateContentEvent(e))}
-                            value={event.dateEndSub}
+                            value={event.dataHoraFimInscricao}
                             isRequired={true}
                             className="formInput"
                         />
                     </div>
                     <Input
                         type="text"
-                        name="location"
+                        name="localEvento"
                         label="Local do Evento"
                         onChange={(e) => dispatch(updateContentEvent(e))}
-                        value={event.location}
+                        value={event.localEvento}
                         isRequired={true}
                         className="formInput"
                     />
-                    {
+                    {/* {
                         event.accommodation.map((accommodation) => {
                             return (
                                 <div className="accommodationBox">
@@ -131,15 +131,9 @@ const FormEvent = () => {
                                 </div>
                             );
                         })
-                    }
+                    } */}
 
                     <div className="inputFile">
-                        {/* <FileBase
-                            id="formImage"
-                            type="file"
-                            multiple={false}
-                            onDone={({ base64 }) => (handleFileUpload(base64))}
-                        /> */}
                         <File64
                             label={'Capa do Evento'}
                             className={'inputFileBtn'}

@@ -5,6 +5,7 @@ dotenv.config();
 
 const Auth = (req, res, next) => {
     try {
+        console.log(req.headers['authorization']);
         const authHeader = req.headers.authorization || req.headers.Authorization;
         // const token = req.headers.authorization.split(" ")[1];
         console.log(authHeader);

@@ -12,6 +12,8 @@
     flex-basis: 0;
     flex-grow: 1.5;
     position: relative;
+    overflow: auto;
+    max-height: 850px;
 }
 
 .boxForm {

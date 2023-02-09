@@ -6,3 +6,5 @@ export const setTypeModal = e => async (dispatch) => {
         payload: e
     });
 };
+
+export const closeModal = () => setTypeModal('');

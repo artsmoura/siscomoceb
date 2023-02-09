@@ -8,6 +8,8 @@ export const LOGOUT = "LOGOUT";
 export const LIST_STATE_SUCCESS = "LIST_STATE_SUCCESS";
 export const LIST_CITY_SUCCESS = "LIST_CITY_SUCCESS";
 export const CONSULT_CEP_SUCCESS = "CONSULT_CEP_SUCCESS";
+export const CHURCH_LOAD_SUCCESS = "CHURCH_LOAD_SUCCESS";
+export const CHURCH_LOAD_ERROR = "CHURCH_LOAD_ERROR";
 
 export const updateContentAuth = e => async (dispatch) => {
     dispatch({
@@ -98,5 +100,20 @@ export const consultCEP = (cep) => async (dispatch) => {
         dispatch(consultCEPSuccess(data));
     } catch (error) {
         console.log(error.message);
+    }
+};
+
+export const getChurch = () => async (dispatch) => {
+    try {
+        const { data } = await api.getChurch();
+        dispatch({
+            type: CHURCH_LOAD_SUCCESS,
+            payload: data
+        });
+    } catch (error) {
+        dispatch(({
+            type: CHURCH_LOAD_ERROR,
+            payload: error.message
+        }));
     }
 };

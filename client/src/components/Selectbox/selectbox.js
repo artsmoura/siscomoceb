@@ -31,19 +31,23 @@ const Selectbox = (props) => {
         setIsActive(false);
     };
 
+
     const handleActive = () => {
-        console.log('clicou??');
-        setIsActive(!isActive);
         props.actionList && dispatch(props.actionList);
+        setIsActive(!isActive);
     };
 
+    // const onClickAction = () => {
+    //     props.hasDispatch && dispatch(props.hasDispatch);
+    //     handleActive();
+    // };
 
     useOutsideClick(ref, () => setIsActive(false));
 
     return (
         <>
             <div className="selectBox" ref={ref}>
-                <div className={`selectBtn ${isActive}`} onClick={() => /* setIsActive(!isActive) */ handleActive()}>
+                <div className={`selectBtn ${isActive}`} onClick={() => handleActive()}>
                     <span className={`labelFloating${props.disabled ? "-disabled" : ""}`}>{props.label}</span>
                     <span>{props.selected}</span>
                     <BiChevronDown />

@@ -1,7 +1,11 @@
 .eventBox .eventCard {
     display: flex;
     align-items: center;
+    flex-wrap: wrap;
+    overflow: auto;
 }
+
+.eventBox {}
 
 .eventBox>h2 {
     margin-left: 16px;

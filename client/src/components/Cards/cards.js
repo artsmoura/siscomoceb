@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Button from "../Button/button";
 import { BiDotsVerticalRounded } from 'react-icons/bi';
 import './cards.css';
+import Dropdown from "../Dropdown/dropdown";
+import { useOutsideClick } from "../../utils";
 
 const Card = (props) => {
 
     const [isActive, setIsActive] = useState(false);
+    const ref = useRef();
 
-    console.log(isActive);
+    useOutsideClick(ref, () => setIsActive(false));
 
     return (
-        <div className="cardBox" key={props.key && props.key}>
+        <div className="cardBox" key={props.key && props.key} onClick={props.clickCard}>
             {props.image ?
                 <div className="cardImg" style={{
                     backgroundImage: `url(${props.image})`,
@@ -22,20 +25,26 @@ const Card = (props) => {
                 <p>Inscrição: {props.inscricaoDate}</p>
                 <p>Local: {props.location}</p>
             </div>
-            <Button
-                name="detalhes"
-                text="Detalhes"
-                className='btnBlue'
-                onClick={props.clickAction}
-            />
-            <div className="cardOption">
-                <Button
-                    name="option"
-                    className='optionBtn'
-                    icon={<BiDotsVerticalRounded size={"2em"} />}
-                    onClick={() => setIsActive(!isActive)}
+            {
+                props.cardOption === true ?
+                    <div className="cardOption">
+                        <Button
+                            name="option"
+                            className='optionBtn'
+                            icon={<BiDotsVerticalRounded size={"2em"} />}
+                            onClick={() => setIsActive(!isActive)}
+                        />
+                    </div>
+                    : null
+            }
+            {
+                isActive &&
+                <Dropdown
+                    ref={ref}
+                    type={'cardDropdown'}
+                    action={props.actions}
                 />
-            </div>
+            }
         </div>
     );
 };
