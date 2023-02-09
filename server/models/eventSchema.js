@@ -1,12 +1,11 @@
-import mongoose from "mongoose";
+const mongoose = require("mongoose");
 
 const eventSchema = mongoose.Schema({
-    title: String,
+    name: String,
     description: String,
     creator: String,
-    tags: [String],
     location: String,
-    dataEvent: {
+    dateEvent: {
         type: Date,
         default: new Date()
     },
@@ -14,7 +13,10 @@ const eventSchema = mongoose.Schema({
         type: Number,
         default: 0
     },
-    Subscribed: [String],
+    subscribed: {
+        type: Array,
+        default: []
+    },
     createAt: {
         type: Date,
         default: new Date()
@@ -22,9 +24,16 @@ const eventSchema = mongoose.Schema({
     eventActive: {
         type: Boolean,
         default: false
-    }
+    },
+    image: String,
+    accommodation: [
+        {
+            name: String,
+            checked: Boolean
+        }
+    ]
 });
 
 const EventSchema = mongoose.model('Event', eventSchema);
 
-export default EventSchema;
+module.exports = EventSchema;

@@ -11,6 +11,14 @@
     align-items: center;
 }
 
+.navbarButtons {
+    width: fit-content;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+}
+
 .profileImg {
     position: absolute;
     right: 28px;
@@ -28,7 +36,7 @@
     height: 32px;
 }
 
-.profileImg img:hover {
+.profileImg img:hover:not(.contentModalHeader>.profileImg>img) {
     border: 3px solid rgba(0, 0, 0, 0.158);
     cursor: pointer;
 }

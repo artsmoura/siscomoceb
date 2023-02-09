@@ -1,10 +1,11 @@
-import express from "express";
-import { getEvents, createEvent } from "../controllers/event.js";
+const express = require("express");
+const { getEvents, createEvent } = require("../controllers/event.js");
+const Auth = require("../middleware/auth.js");
 
 const router = express.Router();
 
 router.get('/', getEvents);
-router.post('/', createEvent);
+router.post('/eventcreate', Auth, createEvent);
 
-export default router
+module.exports = router;
 
